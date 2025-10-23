@@ -11,7 +11,7 @@ public class GUI {
     //PImage logo;
 
     //Botons
-    public static Botons b1, b2;
+    public static Botons b1;
 
     //Enumerat de les pantalles de l'app
     public enum PANTALLA {LOGIN, INICIAL, SETTINGS, CREACIONCLUB, JUGADAS, PLANNING};
@@ -40,10 +40,10 @@ public class GUI {
         b1.display(p5);
         text1.display(p5);
         text2.display(p5);
-        p5.textSize(20);
-        p5.text("contrasenya", p5.width/2-190, p5.height/2+157);
-        p5.textSize(20);
-        p5.text("usuari", p5.width/2-190, p5.height/2+105);
+       // p5.textSize(20);
+       //p5.text("contrasenya", p5.width/2-190, p5.height/2+157);
+       // p5.textSize(20);
+        //p5.text("usuari", p5.width/2-190, p5.height/2+105);
 
     }
 

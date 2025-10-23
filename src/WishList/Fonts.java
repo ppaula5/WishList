@@ -15,9 +15,9 @@ public class Fonts {
 
     void setTipografia(WishList p5){
         this.tipografia = new PFont[3];
-        this.tipografia[0] = p5.createFont("Data/VerifySerifMono.otf", midaTitol);
-        this.tipografia[1] = p5.createFont("Data/F25_Bank_Printer.ttf", midaSubtitol);
-        this.tipografia[2] = p5.createFont("Data/secret_ode.ttf", midaParagraf);
+        this.tipografia[0] = p5.createFont("data/VerilySerifMono.otf", midaTitol);
+        this.tipografia[1] = p5.createFont("data/F25_Bank_Printer_Bold.ttf", midaSubtitol);
+        this.tipografia[2] = p5.createFont("data/secrcode.ttf", midaParagraf);
     }
 
     public int getNumFonts(){
