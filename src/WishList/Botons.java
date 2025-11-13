@@ -1,6 +1,7 @@
 package WishList;
 
 import processing.core.PApplet;
+
 public class Botons {
     float x, y, w, h;  // Posició (x, y) i dimensions (w, h)
     int fillColor, strokeColor; // Colors del boto (fill / stroke).
@@ -10,7 +11,7 @@ public class Botons {
     Colors colors;
     // Constructor
     public Botons(PApplet p5, String text, float x, float y, float w, float h){
-        colors = new Colors(p5);
+        this.colors = new Colors(p5);
         this.textBoto = text;
         this.x = x;
         this.y = y;

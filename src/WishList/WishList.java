@@ -7,7 +7,6 @@ public class WishList extends PApplet{
     Fonts appFonts;
     GUI appGUI;
 
-
     public static void main(String[] args) {
         PApplet.main("WishList.WishList");
     }
@@ -62,15 +61,31 @@ public class WishList extends PApplet{
 
     }
 
-    public void mousePressed(){
-        if(GUI.b1.mouseOverButton(this)){
-            println("B1 has been pressed!!");
-            GUI.pantallaActual = GUI.PANTALLA.INICIAL;
+    public void mousePressed() {
+        if (GUI.pantallaActual == GUI.PANTALLA.LOGIN) {
+            if (GUI.b1.mouseOverButton(this)) {
+                println("B1 has been pressed!!");
+                GUI.pantallaActual = GUI.PANTALLA.INICIAL;
+            }
+            GUI.text1.isPressed(this);
+            GUI.text2.isPressed(this);
+
+        }else if (GUI.pantallaActual == GUI.PANTALLA.INICIAL) {
+            // --- Gestión del Select ---
+            if (GUI.s1.mouseOverSelect(this)) {
+                if (GUI.s1.isCollapsed()) {
+                    // Si está cerrado, lo abrimos
+                    GUI.s1.toggle();
+                } else {
+                    // Si está abierto, seleccionamos el valor
+                    GUI.s1.update(this);
+                    GUI.s1.setCollapsed(true);
+                    println("Seleccionado: " + GUI.s1.getSelectedValue());
+                }
+            } else {
+                // Si clicas fuera, se cierra
+                GUI.s1.setCollapsed(true);
+            }
         }
-        GUI.text1.isPressed(this);
-        GUI.text2.isPressed(this);
     }
-
-
-
 }

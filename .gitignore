@@ -1,7 +1,7 @@
 ### IntelliJ IDEA ###
 out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+!data/fonts/main/**/out/
+!data/fonts/test/**/out/
 
 ### Eclipse ###
 .apt_generated
@@ -12,8 +12,8 @@ out/
 .springBeans
 .sts4-cache
 bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+!data/fonts/main/**/bin/
+!data/fonts/test/**/bin/
 
 ### NetBeans ###
 /nbproject/private/

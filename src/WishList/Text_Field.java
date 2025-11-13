@@ -5,17 +5,16 @@ import static processing.core.PConstants.BACKSPACE;
 
 public class Text_Field {
     int x, y, h, w;
-    //Colors
-    //*introduir colors de clase colors
+
     int bgColor, fgColor, selectedColor, borderColor;
     int borderWeight = 1;
-    //Text del camp
+    boolean esContraseña = false;
+
     public String text = "";
     int textSize = 24;
 
     boolean selected = false;
-    //Constructor
-    //*constructor dels colors
+
     public Text_Field(PApplet p5, int x, int y, int w, int h) {
         this.x = x;
         this.y = y;
@@ -69,7 +68,7 @@ public class Text_Field {
 
     // Afegeix la lletra c al final del text
     public void addText(char c) {
-        if (this.text.length() + 1 < w) {
+        if (this.text.length() < 25) {
             this.text += c;
         }
     }
@@ -81,28 +80,24 @@ public class Text_Field {
         }
     }
 
-    // Lleva tot el text
     public void removeAllText(){
         this.text = "";
     }
 
-    // Retorna el text
     public String getText(){
         return this.text;
     }
 
-    // Setter del text
+
     public void setText(String t){
         this.text= t;
     }
 
-    // Indica si el ratolí està sobre el camp de text
     public boolean mouseOverTextField(PApplet p5) {
         return (p5.mouseX >= this.x && p5.mouseX <= this.x + this.w && p5.mouseY >= this.y && p5.mouseY <= this.y + this.h);
     }
 
-    // Selecciona el camp de text si pitjam a sobre
-    // Deselecciona el camp de text si pitjam a fora
+
     public void isPressed(PApplet p5) {
         if (mouseOverTextField(p5)) {
             selected = true;
