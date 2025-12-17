@@ -13,10 +13,10 @@ public class Colors {
     void setColors(PApplet p5){
         this.colors = new int[5];
         this.colors[0] = p5.color(237, 190, 228);
-        this.colors[1] = p5.color(254, 120, 91);
+        this.colors[1] = p5.color(200, 197, 250);
         this.colors[2] = p5.color(243, 208, 195);
         this.colors[3] = p5.color(171, 72, 45);
-        this.colors[4] = p5.color(240, 90, 67);
+        this.colors[4] = p5.color(69, 21, 27);
     }
 
     // Getter del número de colors

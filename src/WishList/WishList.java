@@ -42,6 +42,22 @@ public class WishList extends PApplet{
             case INICIAL:
                 appGUI.dibujoPantallaInicial(this);
                 break;
+
+            case MENU:
+                appGUI.dibujoPantallaMenu(this);
+                break;
+            case SETTINGS:
+                appGUI.dibujoPantallaSettings(this);
+                break;
+            case MENU2:
+                appGUI.dibujoPantallaSettingsMenu(this);
+                break;
+            case STATISTICS:
+                appGUI.dibujoPantallaStatistics(this);
+                break;
+            case MENU3:
+                appGUI.dibujoPantallaStatistics(this);
+                break;
         }
 
         appFonts.displayTipografia(this, 100,400,500);
@@ -55,6 +71,12 @@ public class WishList extends PApplet{
         }
         else if(key=='1'){
             GUI.pantallaActual = GUI.PANTALLA.INICIAL;
+        }
+        else if(key=='2'){
+            GUI.pantallaActual = GUI.PANTALLA.MENU;
+        }
+        else if(key=='3'){
+            GUI.pantallaActual = GUI.PANTALLA.SETTINGS;
         }
         GUI.text1.keyPressed(key, keyCode);
         GUI.text2.keyPressed(key, keyCode);
@@ -85,6 +107,127 @@ public class WishList extends PApplet{
             } else {
                 // Si clicas fuera, se cierra
                 GUI.s1.setCollapsed(true);
+            }
+            if(GUI.rb1.mouseOverButton(this)){
+                println("RB1 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.LOGIN;
+            }
+            if(GUI.rb2.mouseOverButton(this)){
+                println("RB2 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.SETTINGS;
+            }
+            if(GUI.rb3.mouseOverButton(this)) {
+                println("RB2 has been pressed!!");
+                GUI.pantallaActual = GUI.PANTALLA.MENU;
+            }
+
+
+        }else if(GUI.pantallaActual == GUI.PANTALLA.SETTINGS){
+            if(GUI.rb6.mouseOverButton(this)){
+                println("RB6 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.INICIAL;
+            }else if(GUI.rb3.mouseOverButton(this)){
+                println("RB6 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.MENU2;
+            }
+            if (GUI.s1.mouseOverSelect(this)) {
+                if (GUI.s1.isCollapsed()) {
+                    GUI.s1.toggle();
+                } else {
+                    GUI.s1.update(this);
+                    GUI.s1.setCollapsed(true);
+                    println("Seleccionado: " + GUI.s1.getSelectedValue());
+                }
+            }
+            if (GUI.s2.mouseOverSelect(this)) {
+                if (GUI.s2.isCollapsed()) {
+                    GUI.s2.toggle();
+                } else {
+                    GUI.s2.update(this);
+                    GUI.s2.setCollapsed(true);
+                    println("Seleccionado: " + GUI.s2.getSelectedValue());
+                }
+            }
+        }
+        else if(GUI.pantallaActual == GUI.PANTALLA.MENU){
+            if(GUI.rb3.mouseOverButton(this)){
+                println("RB3 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.INICIAL;
+            }
+            if(GUI.b4.mouseOverButton(this)){
+                println("B4 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.SETTINGS;
+            }
+            if(GUI.b5.mouseOverButton(this)){
+                println("B5 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.LOGIN;
+            }
+            if(GUI.b6.mouseOverButton(this)){
+                println("B6 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.STATISTICS;
+            }
+            if(GUI.b2.mouseOverButton(this)){
+                println("B2 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.INICIAL;
+            }
+        }
+        else if(GUI.pantallaActual == GUI.PANTALLA.MENU2){
+            if(GUI.rb3.mouseOverButton(this)){
+                println("RB3 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.SETTINGS;
+            }
+            if(GUI.rb6.mouseOverButton(this)){
+                println("B4 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.INICIAL;
+            }
+            if(GUI.b6.mouseOverButton(this)){
+                println("B6 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.STATISTICS;
+            }
+            if(GUI.b5.mouseOverButton(this)){
+                println("B5 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.LOGIN;
+            }
+            if(GUI.b4.mouseOverButton(this)){
+                println("B5 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.SETTINGS;
+            }
+            if(GUI.b2.mouseOverButton(this)){
+                println("B2 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.INICIAL;
+            }
+        }
+        else if(GUI.pantallaActual == GUI.PANTALLA.STATISTICS) {
+
+            if(GUI.rb3.mouseOverButton(this)){
+                println("RB3 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.SETTINGS;
+            }
+        }
+        else if(GUI.pantallaActual == GUI.PANTALLA.MENU3) {
+            if(GUI.rb3.mouseOverButton(this)){
+                println("RB3 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.SETTINGS;
+            }
+            if(GUI.rb6.mouseOverButton(this)){
+                println("B4 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.INICIAL;
+            }
+            if(GUI.b6.mouseOverButton(this)){
+                println("B6 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.STATISTICS;
+            }
+            if(GUI.b5.mouseOverButton(this)){
+                println("B5 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.LOGIN;
+            }
+            if(GUI.b4.mouseOverButton(this)){
+                println("B5 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.SETTINGS;
+            }
+            if(GUI.b2.mouseOverButton(this)){
+                println("B2 has been pressed!!");
+                GUI.pantallaActual= GUI.PANTALLA.INICIAL;
             }
         }
     }

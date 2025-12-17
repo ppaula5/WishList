@@ -1,27 +1,37 @@
 package WishList;
 
 import static WishList.Mides.*;
+
 import processing.core.PApplet;
-import processing.core.PConstants;
 import processing.core.PImage;
 
 public class GUI {
-    Colors colors;
+    static Colors colors;
 
     //Logo
     PImage logo;
     PImage logoP1;
     PImage logo2P1;
 
+    PImage user;
+    PImage settings;
+    PImage menu;
+    PImage creu;
+
+    boolean pitjat;
     //Botons
-    public static Botons b1;
+    public static Botons b1, b2, b3, b4, b5, b6;
+
+    public static RoundButton rb1, rb2, rb3, rb4, rb5, rb6;
 
     //Selects
-    public String[] selectValues1 = {"Opcio 1", "Opcio 2"};
-    public static Select s1;
+    public String[] selectValues1 = {"Dark Mode", "Light Mode"};
+    public String[] selectValues2 = {"€", "$", "£"};
+    public static Select s1, s2;
 
+    public static SectorDiagram sd1;
     //Enumerat de les pantalles de l'app
-    public enum PANTALLA {LOGIN, INICIAL, SETTINGS, CREACIONCLUB, JUGADAS, PLANNING};
+    public enum PANTALLA {LOGIN, INICIAL, MENU, MENU2, MENU3, SETTINGS, STATISTICS, CREACIONCLUB, JUGADAS, PLANNING};
 
     //Pantalla actual
     public static PANTALLA pantallaActual;
@@ -38,10 +48,40 @@ public class GUI {
         logoP1 = p5.loadImage("data/logoP1.JPG");
         logo2P1 = p5.loadImage("data/logo2P1.JPG");
 
+        user = p5.loadImage("data/botoUser.png");
+        settings = p5.loadImage("data/botoAjustes.png");
+        menu = p5.loadImage("data/botoMenu.png");
+        creu = p5.loadImage("data/creu.png");
+
+
         b1 = new Botons(p5,"Login", p5.width/2-200,p5.height/2+200,400,50);
-        s1 =new Select(selectValues1, p5.width/2-200,p5.height/2+200,100, 50);
+        b2 = new Botons(p5, "Home", 50, 300, 200, 50);
+        b3 = new Botons(p5, "Add Item", 50, 370, 200, 50);
+        b4 = new Botons(p5, "Settings", 50, 440, 200, 50);
+        b5 = new Botons(p5, "User", 50, 510, 200, 50);
+        b6 = new Botons(p5, "Statistics", 50, 580, 200, 50);
+
+        rb1 = new RoundButton(p5, user, p5.width/2+550, p5.height/2-375, 60);
+        rb2 =new RoundButton(p5, settings, p5.width/2+650, p5.height/2-375, 60);
+        rb3 = new RoundButton(p5, menu, 50, 250, 50);
+        rb4 = new RoundButton(p5, settings, 120, 250, 50);
+        rb5 = new RoundButton(p5, user, 100, 250, 50);
+        rb6 = new RoundButton(p5, creu, p5.width-100, 250, 50);
+
+        s1 =new Select(selectValues1, 300,p5.height/2-120,300, 50);
+        s2 = new Select(selectValues2, 300,p5.height/2+100,300, 50);
+
         text1 = new Puntets(p5, p5.width/2-200, p5.height/2+125, 400,50);
         text2 = new Text_Field(p5, p5.width/2-200, p5.height/2+70, 400,50);
+
+
+        sd1 = new SectorDiagram(p5.width/2, p5.height/2, 200);
+        float[] v = {50, 30, 20};
+        sd1.setValues(v);
+        int[] c = {100, 150, 200};
+        sd1.setColors(c);
+        String [] t = {"Technology", "Clothes", "HomeDecor"};
+        sd1.setTexts(t);
     }
     //Pantalles GUI
 
@@ -60,25 +100,113 @@ public class GUI {
 
     public void dibujoPantallaInicial(PApplet p5){
         p5.background (colors.getColorAt(0));
+        p5.fill(0);
+        p5.rect(0, 0, p5.width, 200);
         logoP1(p5, logoP1);
         logo2P1(p5, logo2P1);
         //s1.display(p5);
+        rb1.display(p5);
+        rb2.display(p5);
+        rb3.display(p5);
     }
+
+    public void dibujoPantallaMenu(PApplet p5) {
+        p5.background(colors.getColorAt(0));
+        p5.fill(0);
+        p5.rect(0, 0, p5.width, 200);
+        logoP1(p5, logoP1);
+        logo2P1(p5, logo2P1);
+        sideBar(p5);
+        rb1.display(p5);
+        rb2.display(p5);
+        rb3.display(p5);
+
+        b2.display(p5);
+        b3.display(p5);
+        b4.display(p5);
+        b5.display(p5);
+        b6.display(p5);
+    }
+
+    public void dibujoPantallaSettings(PApplet p5){
+        p5.background (colors.getColorAt(0));
+        p5.fill(0);
+        p5.rect(0, 0, p5.width, 200);
+        logoP1(p5, logoP1);
+        logo2P1(p5, logo2P1);
+        p5.fill(colors.getColorAt(4));
+        p5.rect(0, 210, p5.width, 80);
+        rb3.display(p5);
+        rb4.display(p5);
+        rb6.display(p5);
+        p5.noStroke();
+        p5.fill(colors.getColorAt(2));
+        p5.textSize(60);
+        p5.textWidth((char) 30);
+        p5.text("Settings", 200, 270);
+
+        s1.display(p5);
+        s2.display(p5);
+    }
+    public void dibujoPantallaSettingsMenu(PApplet p5){
+        p5.background (colors.getColorAt(0));
+        p5.fill(0);
+        p5.rect(0, 0, p5.width, 200);
+        logoP1(p5, logoP1);
+        logo2P1(p5, logo2P1);
+        p5.fill(colors.getColorAt(4));
+        p5.rect(0, 210, p5.width, 80);
+        rb3.display(p5);
+        rb4.display(p5);
+        rb6.display(p5);
+        p5.noStroke();
+        p5.fill(colors.getColorAt(2));
+        p5.textSize(60);
+        p5.textWidth((char) 30);
+        p5.text("Settings", 200, 270);
+
+        s1.display(p5);
+        s2.display(p5);
+
+        sideBar(p5);
+        rb3.display(p5);
+        b2.display(p5);
+        b3.display(p5);
+        b4.display(p5);
+        b5.display(p5);
+        b6.display(p5);
+    }
+
+    public void dibujoPantallaStatistics(PApplet p5){
+        p5.background (colors.getColorAt(0));
+        p5.fill(0);
+        p5.rect(0, 0, p5.width, 200);
+        logoP1(p5, logoP1);
+        logo2P1(p5, logo2P1);
+
+        rb1.display(p5);
+        rb2.display(p5);
+        rb3.display(p5);
+        rb6.display(p5);
+
+        sd1.display(p5);
+    }
+
 
     //Zones de la GUI
     public static void logoP1(PApplet p5, PImage logoP1){
         p5.fill(250, 250, 0);
         //p5.circle(p5.width/2,p5.height/2, 30);
-        logoP1.resize(98, 0);
+        logoP1.resize(150, 0);
         p5.imageMode(PApplet.CENTER);
         p5.image(logoP1, 150, 100);
     }
     public static void logo2P1(PApplet p5, PImage logo2P1){
         p5.fill(250, 250, 0);
         //p5.circle(p5.width/2,p5.height/2, 30);
-        logo2P1.resize(300, 0);
+        logo2P1.resize(500, 0);
         p5.imageMode(PApplet.CENTER);
-        p5.image(logo2P1, 348, 100);
+        p5.image(logo2P1, 465, 100);
     }
 
    public static void logoLogIn(PApplet p5, PImage logo){
@@ -97,10 +225,9 @@ public class GUI {
     }
 
     public static void sideBar(PApplet p5){
-        // Zona Sidebar ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        p5.fill(50,200,100);
-        p5.rect(marginH, 2*marginV + logoHeight, sidebarWidth, sidebarHeight);
+        p5.fill(colors.getColorAt(1));
+        p5.rect(0, 200, 300, p5.height);
         p5.fill(0);
-        p5.text("SIDEBAR", marginH + sidebarWidth/2, marginV + logoHeight + sidebarHeight/2);
+        // p5.text("SIDEBAR", marginH + sidebarWidth/2, marginV + logoHeight + sidebarHeight/2);
     }
 }
