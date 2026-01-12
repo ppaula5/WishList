@@ -67,11 +67,12 @@ public class Card {
         p5.rect(x, y, w, h, b/2);
 
         // imatge descriptiva
-        float imgW = (w/3) - 2*b;
-        float imgH = h - 2*b;
+
+        float imgW = img.width/3;
+        float imgH = img.height/3;
         if(img!=null){
-            p5.image(img, x + b, y + b, imgW, imgH);
-            p5.noFill(); p5.rect(x + b, y + b, imgW, imgH);
+            p5.image(img, x+b , y+b, imgW, imgH);
+            p5.noFill(); p5.rect(x+b , y+b , imgW, imgH);
         }
         else {
             p5.fill(50);

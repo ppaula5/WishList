@@ -18,11 +18,16 @@ public class GUI {
     PImage menu;
     PImage creu;
 
+    PImage brusa;
+    PImage top;
+
     boolean pitjat;
     //Botons
     public static Botons b1, b2, b3, b4, b5, b6;
 
     public static RoundButton rb1, rb2, rb3, rb4, rb5, rb6;
+
+    public static PagedCard paged;
 
     //Selects
     public String[] selectValues1 = {"Dark Mode", "Light Mode"};
@@ -53,6 +58,9 @@ public class GUI {
         menu = p5.loadImage("data/botoMenu.png");
         creu = p5.loadImage("data/creu.png");
 
+        brusa = p5.loadImage("data/foto1.jpg");
+        top = p5.loadImage("data/foto2.jpg");
+
 
         b1 = new Botons(p5,"Login", p5.width/2-200,p5.height/2+200,400,50);
         b2 = new Botons(p5, "Home", 50, 300, 200, 50);
@@ -82,6 +90,18 @@ public class GUI {
         sd1.setColors(c);
         String [] t = {"Technology", "Clothes", "HomeDecor"};
         sd1.setTexts(t);
+
+        String[][] data ={
+                {"Item 1", "Blusa", "1", "Secció 1", "Descripción 1"},
+                {"Item 2", "Top",   "2", "Secció 2", "Descripción 2"},
+        };
+
+        paged = new PagedCard(4);                 // 4 cards por página
+        paged.setDimensions(150, 300, 500, 800);
+        paged.setData(data);
+        paged.setCards();
+        paged.setImages(brusa, top);
+
     }
     //Pantalles GUI
 
@@ -108,6 +128,8 @@ public class GUI {
         rb1.display(p5);
         rb2.display(p5);
         rb3.display(p5);
+
+        paged.display(p5);
     }
 
     public void dibujoPantallaMenu(PApplet p5) {
@@ -147,6 +169,7 @@ public class GUI {
 
         s1.display(p5);
         s2.display(p5);
+
     }
     public void dibujoPantallaSettingsMenu(PApplet p5){
         p5.background (colors.getColorAt(0));
